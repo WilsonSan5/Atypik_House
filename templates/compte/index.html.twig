@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Compte
+{% endblock %}
+
+{% block body %}
+	<div class='container margin-top'>
+		<h1>{{ app.user.email }}</h1>
+
+		<table class="table">
+			<tbody>
+				<tr>
+					<th>n°d'identifiant</th>
+					<td>{{ app.user.id }}</td>
+				</tr>
+				<tr>
+					<th>Nom</th>
+					<td>{{ app.user.nom }}</td>
+				</tr>
+				<tr>
+					<th>Prénom</th>
+					<td>{{ app.user.prenom }}</td>
+				</tr>
+				<tr>
+					<th>E-mail</th>
+					<td>{{ app.user.email }}</td>
+				</tr>
+				<tr>
+					<th>Téléphone</th>
+					<td>{{ app.user.phone }}</td>
+				</tr>
+			</tbody>
+		</table>
+		<a href="{{ path('app_compte_edit') }}">Modifier</a>
+	</div>
+{% endblock %}

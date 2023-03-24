@@ -1,0 +1,84 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}User
+{% endblock %}
+
+{% block body %}
+	<div class='container margin-top'>
+		<h1>{{ user.email }}</h1>
+
+		<table class="table">
+			<tbody>
+				<tr>
+					<th>Id</th>
+					<td>{{ user.id }}</td>
+				</tr>
+				<tr>
+					<th>Email</th>
+					<td>{{ user.email }}</td>
+				</tr>
+				<tr>
+					<th>Roles</th>
+					<td>{{ user.roles ? user.roles|json_encode : '' }}</td>
+				</tr>
+				<tr>
+					<th>Password</th>
+					<td>{{ user.password }}</td>
+				</tr>
+				<tr>
+					<th>Phone</th>
+					<td>{{ user.phone }}</td>
+				</tr>
+				<tr>
+					<th>IsVerified</th>
+					<td>{{ user.isVerified ? 'Yes' : 'No' }}</td>
+				</tr>
+			</tbody>
+		</table>
+
+
+		<a href="{{ path('app_user_index') }}">Retour à la liste</a>
+
+		<a href="{{ path('app_user_edit', {'id': user.id}) }}">Modifier</a>
+
+		{{ include('user/_delete_form.html.twig') }}
+		
+		<h1 class='margin-top'>Gestion Habitats</h1>
+		<table class="table ">
+			<thead>
+				<tr>
+					<th>Id</th>
+					<th>Titre</th>
+					<th>Adresse</th>
+					<th>Propriétaire</th>
+					<th>Prix/nuits</th>
+					<th>Catégorie</th>
+					<th>Note</th>
+					<th>actions</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for habitat in habitats %}
+					<tr>
+						<td>{{ habitat.id }}</td>
+						<td>{{ habitat.titre }}</td>
+						<td>{{ habitat.adresse }}</td>
+						<td>{{ habitat.proprio }}</td>
+						<td>{{ habitat.prix }}
+							€</td>
+						<td>{{ habitat.categorie }}</td>
+						<td>{{ habitat.note }}</td>
+						<td>
+							<a href="{{ path('app_habitats_show', {'id': habitat.id}) }}">show</a>
+							<a href="{{ path('app_habitats_edit', {'id': habitat.id}) }}">edit</a>
+						</td>
+					</tr>
+				{% else %}
+					<tr>
+						<td colspan="6">no records found</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	</div>
+{% endblock %}

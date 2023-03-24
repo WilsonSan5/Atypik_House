@@ -1,0 +1,56 @@
+{% extends 'base.html.twig' %}
+
+
+{% block body %}
+	<style>
+		#form-div {
+			height: 100vh;
+			background-image: url('../../img/bg_2.jpg');
+			background: url('../../img/bg_2.jpg'), linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.7));
+			background-blend-mode: multiply;
+
+
+			background-position: center;
+			background-size: cover;
+			background-repeat: no-repeat;
+			background-blend-mode: multiply;
+			overflow-y: hidden;
+		}
+		#form-div form {
+			height: auto;
+			width: 300px;
+			border-radius: 25px;
+			color: white;
+			background-color: rgb(0, 0, 0, 0.7);
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			flex-direction: column;
+		}
+		#form-div form button {
+			margin: 15px 0px;
+			color: white;
+			border: 1px solid white;
+		}
+		#form-div form button:hover {
+			color: black;
+			border: 1px solid black;
+			background-color: white;
+		}
+	</style>
+	{% if error %}
+		<div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+	{% endif %}
+	<section id='form-div' class=' d-flex justify-content-center align-items-center '>
+		<form action="{{ path('app_login') }}" method="post" class=''>
+			<label><h1>Connexion</h1></label>
+			<label for="username">Email:</label>
+			<input type="text" id="username" name="_username" value="{{ last_username }}">
+
+			<label for="password">Mot de passe:</label>
+			<input type="password" id="password" name="_password">
+
+			<button type="submit">login</button>
+		</form>
+	</section>
+{% endblock %}

@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello PaiementController!
+{% endblock %}
+{% block stylesheet %}
+
+{% endblock %}
+{% block body %}
+
+	<div class="container margin-top">
+		<h1>
+			{{ controller_name }}! ✅</h1>
+	</div>
+   <h1>Paiement </h1>
+
+       <p id="nomUser">{{ app.user.email }}</p>
+       <p id="prenomUser">{{ app.user.email }}</p>
+
+    <p><span id="prix">{{ app.user.id }}</span>€</p>
+
+    <div id="paiement">
+        <!-- Display a payment form -->
+        <form id="payment-form">
+            <div id="link-authentication-element">
+            <!--Stripe.js injects the Link Authentication Element-->
+            </div>
+            <div id="payment-element">
+            <!--Stripe.js injects the Payment Element-->
+            </div>
+            <button id="submit">
+            <div class="spinner hidden" id="spinner"></div>
+            <span id="button-text">Payer</span>
+            </button>
+            <div id="payment-message" class="hidden"></div>
+        </form>
+    </div>
+</div>
+	<script type="text/javascript" src="https://js.stripe.com/v3/"></script>
+	<script src='stripe/checkout.js'></script>
+{% endblock %}

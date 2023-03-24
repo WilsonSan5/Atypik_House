@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Habitats
+{% endblock %}
+
+{% block body %}
+
+	<section class='form-section d-flex justify-content-center align-items-center'>
+		<div class='form-div '>
+			<h1>Edit Habitats</h1>
+
+			<div class='row'>
+				{{ include('habitats/_form.html.twig', {'button_label': 'Update'}) }}
+
+				{{ include('habitats/_delete_form.html.twig') }}
+                <a href="{{ path('app_habitats_index') }}">back to list</a>
+			</div>
+		</div>
+	</section>
+{% endblock %}

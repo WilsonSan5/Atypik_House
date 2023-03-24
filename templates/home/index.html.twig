@@ -1,0 +1,164 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Atypik House
+{% endblock %}
+
+{% block body %}
+	<style></style>
+	<div class="col-12">
+		<section id='header' class='col-12'>
+			<div class='container d-flex flex-column justify-content-center' id='header-container'>
+				<h1 class='justify-self-center col-6'>
+					Partez à l'aventure&nbsp;!
+				</h1>
+				<p class='justify-self-center col-6'>
+					Avec Atypik House découvrez les logements les plus atypiques de France et vivez des aventures inédites&nbsp;!
+				</p>
+			</div>
+		</section>
+
+		{# Categories #}
+
+		<section class='container px-0' id='foret'>
+			<div class='row justify-content-between'>
+				<h2 class='col-5 px-0 py-4 '>
+					{{'Partir en'|upper}}
+					{{categories[0].titre|upper}} 
+					<img class='icone-categorie green' src='{{ asset('img/forest.svg') }}'>
+				</h2>
+
+				<a class='w-auto p-0 text-center align-self-center' href='{{ path('app_categories_show', {'id': 1}) }}'>
+					<button>Voir plus
+					</button>
+				</a>
+			</div>
+			<div class='row px-0'>
+				<p class='py-1 px-0 py-2'>
+					{{categories[0].description}}</p>
+			</div>
+			<div class='row justify-content-between gap-4'>
+				{% for habitat in habitats_1|slice(0,4) %}
+					<div class="card p-0" style="width: 19rem;">
+						<a href='{{ path('app_habitats_show',{'id':habitat.id}) }}'>
+							<div class='image-box'><img class="card-img-top" src={{habitat.image}} alt="Card image cap"></div>
+							<div class="card-body">
+								<h5 class="card-title">{{habitat.titre}}</h5>
+								<p class="card-text">{{habitat.adresse}}</p>
+								<p>{{habitat.prix}}
+									€/par nuit</p>
+							</div>
+						</a>
+					</div>
+				{% endfor %}
+			</div>
+		</section>
+		<section class='container' id='plage'>
+			<div class='row justify-content-between'>
+				<h2 class='col-5 py-4 px-0'>
+					{{'Partir à la'|upper}}
+					{{categories[1].titre|upper}}
+					<img class='icone-categorie yellow' src='{{ asset('img/beach.svg') }}'>
+				</h2>
+				<a class='w-auto p-0 text-center align-self-center' href='{{ path('app_categories_show', {'id': 2}) }}'>
+					<button>Voir plus
+					</button>
+				</a>
+			</div>
+			<div class='row px-0 py-2'>
+				<p class='py-1 px-0'>{{categories[1].description}}</p>
+			</div>
+			<div class='row justify-content-between gap-4'>
+				{% for habitat in habitats_2|slice(0,4) %}
+					<div class="card p-0" style="width: 19rem;">
+						<a href='{{ path('app_habitats_show',{'id':habitat.id}) }}'>
+							<div class='image-box'><img class="card-img-top" src={{habitat.image}} alt="Card image cap"></div>
+							<div class="card-body">
+								<h5 class="card-title">{{habitat.titre}}</h5>
+								<p class="card-text">{{habitat.adresse}}</p>
+								<p>{{habitat.prix}}
+									€/par nuit</p>
+							</div>
+						</a>
+					</div>
+				{% endfor %}
+			</div>
+		</section>
+	</section>
+	<section class='container' id='montagne'>
+		<div class='row justify-content-between'>
+			<h2 class='col-5 py-4 px-0'>
+				{{'Partir à la'|upper}}
+				{{categories[2].titre|upper}}
+				<img class='icone-categorie brown' src='{{ asset('img/mountain.svg') }}' id='moutain'>
+			</h2>
+			<a class='w-auto p-0 text-center align-self-center' href='{{ path('app_categories_show', {'id': 3}) }}'>
+				<button>Voir plus
+				</button>
+			</a>
+		</div>
+		<div class='row px-0 py-2'>
+			<p class='py-1 px-0'>{{categories[2].description}} </p>
+		</div>
+		<div class='row justify-content-between gap-4'>
+			{% for habitat in habitats_3|slice(0,4) %}
+				<div class="card p-0" style="width: 19rem;">
+					<a href='{{ path('app_habitats_show',{'id':habitat.id}) }}'>
+						<div class='image-box'><img class="card-img-top" src={{habitat.image}} alt="Card image cap"></div>
+						<div class="card-body">
+							<h5 class="card-title">{{habitat.titre}}</h5>
+							<p class="card-text">{{habitat.adresse}}</p>
+							<p>{{habitat.prix}}
+								€/par nuit</p>
+						</div>
+					</a>
+				</div>
+			{% endfor %}
+		</div>
+	</section>
+	<section class='container' id='campagne'>
+		<div class='row justify-content-between'>
+			<h2 class='col-5 py-4 px-0'>
+				{{'Partir à la'|upper}}
+				{{categories[3].titre|upper}}
+				<img class='icone-categorie blue' id='cow' src='{{ asset('img/cow.svg') }}'>
+			</h2>
+			<a class='w-auto p-0 text-center align-self-center' href='{{ path('app_categories_show', {'id': 4} ) }}'>
+				<button>Voir plus
+				</button>
+			</a>
+		</div>
+		<div class='row px-0 py-2'>
+			<p class='py-1 px-0'>{{categories[3].description}}</p>
+		</div>
+		<div class='row justify-content-between'>
+			{% for habitat in habitats_4|slice(0,4) %}
+				<div class="card p-0" style="width: 19rem;">
+					<a href='{{ path('app_habitats_show',{'id':habitat.id}) }}'>
+						<div class='image-box'><img class="card-img-top" src={{habitat.image}} alt="Card image cap"></div>
+						<div class="card-body">
+							<h5 class="card-title">{{habitat.titre}}</h5>
+							<p class="card-text">{{habitat.adresse}}</p>
+							<p>{{habitat.prix}}
+								€/par nuit</p>
+						</div>
+					</a>
+				</div>
+			{% endfor %}
+		</div>
+	</section>
+	<script>
+		var myNav = document.getElementById('navbar');
+
+		myNav.classList.remove("nav-colored")
+		myNav.classList.add("nav-transparent")
+
+		window.onscroll = function () {
+		if (window.scrollY >= 150) {
+		myNav.classList.remove("nav-transparent");
+		myNav.classList.add("nav-colored")
+		} else {
+		myNav.classList.add("nav-transparent");
+		myNav.classList.remove("nav-colored")
+}
+}; </script>
+</div>{% endblock %}

@@ -1,0 +1,56 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Habitats index
+{% endblock %}
+
+{% block body %}
+	<style> 
+	button{
+		background-color : #d36d31;
+		color: white;
+		border:0px;
+		border-radius: 15px;
+		padding: 0.2em 1em;
+	}
+	</style>
+	<div class='container margin-top'>
+		<h1>Les habitats de
+			{{app.user.prenom}} {{app.user.nom}} </h1>
+		<table class="table">
+			<thead>
+				<tr>
+					{# <th>Id</th> #}
+					<th>Titre</th>
+					<th>Adresse</th>
+					{# <th>Image</th> #}
+					<th>Catégorie</th>
+					<th>prix</th>
+					<th>Note</th>
+					<th> </th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for habitat in habitats %}
+					<tr>
+						{# <td>{{ habitat.id }}</td> #}
+						<td>{{ habitat.titre }}</td>
+						<td>{{ habitat.adresse }}</td>
+						{# <td>{{ habitat.image }}</td> #}
+						<td>{{ habitat.categorie }}</td>
+						<td>{{ habitat.prix }}€/nuits</td>
+						<td>{{ habitat.note }}</td>
+						<td>
+							<a href="{{ path('app_habitats_show', {'id': habitat.id}) }}"><button>Voir</button></a>
+							<a href="{{ path('app_habitats_edit', {'id': habitat.id}) }}"><button>Modifier</button></a>
+						</td>
+					</tr>
+				{% else %}
+					<tr>
+						<td colspan="6">Aucun habitat enregistré</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+		<a class='' href="{{ path('app_habitats_new') }}"><button>Mettre en ligne un habitat</button></a>
+	</div>
+{% endblock %}

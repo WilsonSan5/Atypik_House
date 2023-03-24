@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Categories
+{% endblock %}
+
+{% block body %}
+	<div class='container margin-top'>
+		<section>
+			<h2 id='titre' class='py-4'>LA
+				{{category.titre|upper}}
+				{% if category.titre == 'Forêt' %}
+					<img class='icone-categorie green' src='{{ asset("img/forest.svg") }}' >
+				{% elseif category.titre == 'Plage' %}
+					<img class='icone-categorie yellow' src='{{ asset("img/beach.svg") }}' >
+				{% elseif category.titre == 'Montagne' %}
+					<img class='icone-categorie brown' src='{{ asset("img/mountain.svg") }}' >
+				{% elseif category.titre == 'Campagne' %}
+					<img class='icone-categorie blue' src='{{ asset("img/cow.svg") }}' id='cow'>
+				{% endif %}
+			</h2>
+			<p>{{category.description}}
+			</p>
+			<div class='row justify-content-center col-12 mx-auto gap-4'>
+
+				{% for habitat in habitats|reverse %}
+					<div class="card p-0" style="width: 19rem;">
+						<a href='{{ path('app_habitats_show',{'id':habitat.id}) }}'>
+							<div class='image-box'><img class="card-img-top" src={{habitat.image}} alt="Card image cap"></div>
+							<div class="card-body">
+								<h5 class="card-title">{{habitat.titre}}</h5>
+								<p class="card-text">{{habitat.adresse}}</p>
+								<p>{{habitat.prix}}
+									€/par nuit</p>
+							</div>
+						</a>
+					</div>
+				{% endfor %}
+			</div>
+			{% if is_granted('ROLE_ADMIN') %}
+				<a href="{{ path('app_categories_index') }}">back to list</a>
+				<a href="{{ path('app_categories_edit', {'id': category.id}) }}">edit</a>
+				{{ include('categories/_delete_form.html.twig') }}
+			{% endif %}
+		</div>
+	</section>
+
+
+{% endblock %}

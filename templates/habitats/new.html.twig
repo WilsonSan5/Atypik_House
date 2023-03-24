@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Habitats
+{% endblock %}
+
+{% block body %}
+	<div class='container margin-top'>
+		<h1>Ajouter un habitat</h1>
+
+		{{ include('habitats/_form.html.twig') }}
+
+		<a href="{{ path('app_habitats_index') }}">back to list</a>
+	</div>
+{% endblock %}

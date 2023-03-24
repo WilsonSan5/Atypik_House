@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	{{ habitat.titre }}
+{% endblock %}
+
+{% block body %}
+	<div class='container margin-top'>
+		<section>
+			<div class='row justify-content-center col-12 gap-4'>
+				<div class='col-5 p-4 d-flex align-items-start flex-column detail-box'>
+					<div class='mb-auto'>
+						<h1>{{ habitat.titre }}</h1>
+						<h1>
+							{{ habitat.prix }}
+							€ /nuit</h1>
+						<p>{{habitat.adresse}}
+						</p>
+						<p>
+							Contact :
+							{{habitat.proprio}}
+						</p>
+					</div>
+					
+					<div class='mx-auto'>
+						{% if is_granted('ROLE_USER') %}
+							<a href='{{ path('app_habitat_buy', {'id': habitat.id}) }}'>
+								<button id='btn-louer' class=''>Louer</button>
+							</a>
+						{% else %}
+							<a href='{{ path('app_register') }}'>
+								<button id='btn-louer' class=''>Louer</button>
+							</a>
+						{% endif %}
+					</div>
+				</div>
+				<div class='col-6 p-0 image_box'><img src='{{habitat.image}}' class='mx-auto'></div>
+			</div>
+		</div>
+		<section></div>
+	{% endblock %}

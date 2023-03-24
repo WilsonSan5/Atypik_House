@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Habitats index
+{% endblock %}
+
+{% block body %}
+	<div class='container margin-top'>
+
+		<h1>Gestion Habitats</h1>
+
+		<table class="table">
+			<thead>
+				<tr>
+					<th>Id</th>
+					<th>Titre</th>
+					<th>Adresse</th>
+					<th>Propriétaire</th>
+					<th>Prix/nuits</th>
+                    <th>Catégorie</th>
+					<th>Note</th>
+					<th>actions</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for habitat in habitats %}
+					<tr>
+						<td>{{ habitat.id }}</td>
+						<td>{{ habitat.titre }}</td>
+						<td>{{ habitat.adresse }}</td>
+						<td>{{ habitat.proprio }}</td>
+						<td>{{ habitat.prix }} €</td>
+                        <td>{{ habitat.categorie }}</td>
+						<td>{{ habitat.note }}</td>
+						<td>
+							<a href="{{ path('app_habitats_show', {'id': habitat.id}) }}">Voir</a>
+							<a href="{{ path('app_habitats_edit', {'id': habitat.id}) }}">Modifier</a>
+						</td>
+					</tr>
+				{% else %}
+					<tr>
+						<td colspan="6">no records found</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+		<a href="{{ path('app_habitats_new') }}">Ajouter un habitat</a>
+	</div>
+{% endblock %}

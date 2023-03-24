@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>
+			{% block title %}Welcome!
+			{% endblock %}
+		</title>
+		<link
+		rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>🛖</text></svg>">
+		{# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
+		<link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">	
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+		{% block stylesheets %}
+			{{ encore_entry_link_tags('app') }}
+		{% endblock %}
+
+		{% block javascripts %}
+			{{ encore_entry_script_tags('app') }}
+		{% endblock %}
+	</head>
+
+	<nav class="col-12 px-4 py-1 fixed-top nav-colored" id='navbar'>
+		<a class="left-side px-4" href="{{path('app_home')}}"><img src='{{ asset('img/atypik_house_blanc.png') }}' class='logo'></a>
+		<div class="px-4" id="">
+			<a class="nav-lien" href="{{path('app_home')}}">Partir à l'aventure</a>
+			{% if is_granted('ROLE_ADMIN') %}
+				<a class="nav-lien" href="{{path('app_habitats_index')}}">Gestion des habitations</a>
+				<a class="nav-lien" href="{{path('app_categories_index')}}">Gestion des catégories</a>
+				<a class="nav-lien" href="{{path('app_user_index')}}">Gestion des clients</a>
+				<a class="nav-lien" href="{{path('app_reservations_index')}}">Gestion des réservations</a>
+				<a href='{{path('app_logout')}}'>
+					<button>
+						Deconnexion</button>
+				</a>
+			{% elseif is_granted('ROLE_USER') %}
+				<a class="nav-lien" href="{{path('app_habitats_index')}}">Mes locations</a>
+				<a class="nav-lien" href="{{path('app_reservations_index')}}">Mes réservations</a>
+				<a class="nav-lien" href="{{path('app_compte_show')}}">Espace client</a>
+				<a href='{{path('app_logout')}}'>
+					<button>
+						Deconnexion</button>
+				</a>
+			{% else %}
+				<a class="nav-lien" href="{{path('app_register')}}">Mes habitations</a>
+
+				<a href='{{path('app_register')}}'>
+					<button>
+						Inscription</button>
+				</a>
+				<a href='{{path('app_login')}}'>
+					<button>
+						Connexion</button>
+				</a>
+			{% endif %}
+		</div>
+	</nav>
+	{% block body %}{% endblock %}
+<body> </body>
+
+</html>
